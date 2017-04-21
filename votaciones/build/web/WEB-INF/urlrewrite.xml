@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE urlrewrite
+        PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd"
+        [<!ENTITY included SYSTEM "urlrewrite-generated.xml">]>
+<!--
+Configuration file for UrlRewriteFilder
+http://www.tuckey.org/urlrewrite
+-->
+
+<urlrewrite>
+    <rule>
+        <from>^/login/</from>
+        <to>/login_page.html</to>
+    </rule>
+    <rule>
+        <from>^/register/</from>
+        <to>/register_page.html</to>
+    </rule>
+    <rule>
+        <from>^/recoveraccount/</from>
+        <to>/recover_account_page.html</to>
+    </rule>
+</urlrewrite>
