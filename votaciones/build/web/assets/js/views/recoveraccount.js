@@ -29,9 +29,9 @@ $(function () {
         },
         onConsultaRecuperarCuenta: function (respuesta) {
             if (__app.respuestaExistosa(respuesta)) {
-                __dom.imprimirAlerta("Se ha enviado el correo de recuperación de cuenta a tu bandeja de entrada.", "success");
-            }else{
-                __dom.imprimirAlerta("Lo sentimos no existe ninguna coincidencia con las credenciales ingresadas.","danger");
+                __dom.imprimirAlerta("En unos segundos llegará el correo de recuperación de cuenta a tu bandeja de entrada.", "success");
+            } else {
+                __dom.imprimirAlerta("Lo sentimos no existe ninguna coincidencia con las credenciales ingresadas.", "danger");
             }
             console.log(respuesta);
         },

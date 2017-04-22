@@ -2,7 +2,7 @@
  * GenesisUI - Bootstrap 4 Admin Template
  * @version v1.8.1
  * @link https://genesisui.com
- * Copyright (c) 2017 creativeLabs Åukasz Holeczek
+ * Copyright (c) 2017 creativeLabs Ãƒâ€¦Ã‚Âukasz Holeczek
  * @license Commercial
  */
 @charset "UTF-8";
@@ -2831,12 +2831,13 @@ header.navbar .navbar-brand {
     height: 60px;
     padding: 0.5rem 1rem;
     margin-right: 0;
-    background-color: #20a8d8;
+    background-color: #ffffff;
     background-image: url("../img/logo.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 90px auto;
-    border-bottom: 1px solid #1985ac; }
+    border-bottom: 1px solid #1985ac;
+    }
 header.navbar .navbar-nav {
     flex-direction: row;
     align-items: center; }
@@ -6079,7 +6080,8 @@ a.bg-inverse:focus, a.bg-inverse:hover {
     color: #fff !important; }
 
 .text-muted {
-    color: #c0cadd !important; }
+    color: #a4abb9 !important;
+    }
 
 a.text-muted:focus, a.text-muted:hover {
     color: #9faecb !important; }
@@ -8725,7 +8727,7 @@ be a descendant of the grid when it is being dragged.
 
 /* Ion.RangeSlider
 // css version 2.0.3
-// Â© 2013-2014 Denis Ineshin | IonDen.com
+// Ãƒâ€šÃ‚Â© 2013-2014 Denis Ineshin | IonDen.com
 // ===================================================================================================================*/
 /* =====================================================================================================================
 // RangeSlider */
@@ -8880,7 +8882,7 @@ be a descendant of the grid when it is being dragged.
 
 /* Ion.RangeSlider, Modern Skin
 // css version 2.0.3
-// Â© Denis Ineshin, 2014    https://github.com/IonDen
+// Ãƒâ€šÃ‚Â© Denis Ineshin, 2014    https://github.com/IonDen
 // ===================================================================================================================*/
 /* =====================================================================================================================
 // Skin details */

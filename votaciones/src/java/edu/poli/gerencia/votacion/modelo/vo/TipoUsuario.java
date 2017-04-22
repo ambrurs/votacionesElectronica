@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TipoUsuario.findAll", query = "SELECT t FROM TipoUsuario t")
     , @NamedQuery(name = "TipoUsuario.findByIdTipoUsuario", query = "SELECT t FROM TipoUsuario t WHERE t.idTipoUsuario = :idTipoUsuario")
-    , @NamedQuery(name = "TipoUsuario.findByNombreUsuario", query = "SELECT t FROM TipoUsuario t WHERE t.nombreUsuario = :nombreUsuario")})
+    , @NamedQuery(name = "TipoUsuario.findByNombreUsuario", query = "SELECT t FROM TipoUsuario t WHERE t.nombreUsuario = :nombreUsuario")
+    , @NamedQuery(name = "TipoUsuario.findByPublico", query = "SELECT t FROM TipoUsuario t WHERE t.publico = :publico")})
 public class TipoUsuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -45,6 +46,10 @@ public class TipoUsuario implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "NOMBRE_USUARIO")
     private String nombreUsuario;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "PUBLICO")
+    private boolean publico;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoUsuario")
     private Collection<Usuario> usuarioCollection;
 
@@ -55,9 +60,10 @@ public class TipoUsuario implements Serializable {
         this.idTipoUsuario = idTipoUsuario;
     }
 
-    public TipoUsuario(Integer idTipoUsuario, String nombreUsuario) {
+    public TipoUsuario(Integer idTipoUsuario, String nombreUsuario, boolean publico) {
         this.idTipoUsuario = idTipoUsuario;
         this.nombreUsuario = nombreUsuario;
+        this.publico = publico;
     }
 
     public Integer getIdTipoUsuario() {
@@ -74,6 +80,14 @@ public class TipoUsuario implements Serializable {
 
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
+    }
+
+    public boolean getPublico() {
+        return publico;
+    }
+
+    public void setPublico(boolean publico) {
+        this.publico = publico;
     }
 
     @XmlTransient

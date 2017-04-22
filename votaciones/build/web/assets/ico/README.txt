@@ -1,0 +1,1 @@
+Poner todas las dimenciones de logos para cada sistema operativo.

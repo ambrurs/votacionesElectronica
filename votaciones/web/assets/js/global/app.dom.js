@@ -41,9 +41,14 @@ var __dom = {
         cmb.html("");
         cmb.append(new Option("No hay registros", "-1"));
     },
-    imprimirAlerta: function (mensaje, tipo) {
+    imprimirAlerta: function (mensaje, tipo, animar) {
         var alerta = $('#alerta');
-        alerta.attr('class', 'alert alert-' + tipo + ' alert-dismissable').hide().slideDown(300);
+        alerta.attr('class', 'alert alert-' + tipo + ' alert-dismissable');
+        if (animar === true) {
+            alerta.hide().slideDown(200);
+        }else{
+            alerta.show();
+        }
         alerta.find('#text').html(mensaje);
     }
 };

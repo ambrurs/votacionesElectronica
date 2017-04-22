@@ -28,7 +28,7 @@ $(function ()
                         },
                         function (respuesta) {
                             if (__app.respuestaExistosa(respuesta)) {
-//                                location.href = "../" + respuesta.cpanel;
+                                location.href = __app.base("dashboard/");
                             } else {
                                 Login.imprimirError("Error en el usuario o la clave.");
                             }

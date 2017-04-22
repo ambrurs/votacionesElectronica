@@ -14,8 +14,11 @@ var __app = {
         }
         return respuesta;
     },
+    base: function (url) {
+        return __app.urlbase + url;
+    },
     respuestaExistosa: function (respuesta) {
-        return __app.validarRespuesta(respuesta);
+        return respuesta.codigo > 0;
     },
     parsearRespuesta: function (respuesta) {
         var datos = __app.validarRespuesta(respuesta);
@@ -56,7 +59,7 @@ var __app = {
         ajax.error = (error) ? error : __app.ajaxError;
         return ajax;
     },
-    beforeSend: function(data){        
+    beforeSend: function (data) {
     },
     ajax: function (args) {
         var ajax = new Object();
@@ -79,5 +82,5 @@ var __app = {
             returnArray[formArray[i]['name']] = formArray[i]['value'];
         }
         return returnArray;
-    },    
+    },
 };

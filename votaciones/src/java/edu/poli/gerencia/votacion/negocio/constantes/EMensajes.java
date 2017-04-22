@@ -21,7 +21,7 @@ public enum EMensajes {
     RECURSO_NO_ENCONTRADO(-400, "Recurso no encontrado", null),
     NO_HAY_RESULTADOS(0, "No se encontraron registros", null),
     CORRECTO(1, "Se ha procesado la petición correctamente", null),
-    NO_SE_PUDO_PROCESAR(-500, "No se pudo procesar la peticion, como el código lo indica es un error 500 (error interno en el sistama)", null),
+    NO_SE_PUDO_PROCESAR(-500, "Lo sentimos, no se pudo procesar la peticion", null),
     ERROR_INSERTAR(-1, "Error al insertar el registro", null),
     ERROR_MODIFICAR(-1, "Error al modificar el registro", null),
     ERROR_ELIMINAR(-1, "Error al eliminar el registro", null),

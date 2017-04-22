@@ -5,7 +5,12 @@
  */
 package edu.poli.gerencia.votacion.negocio.recursos;
 
+import edu.poli.gerencia.votacion.modelo.vo.Persona;
+import edu.poli.gerencia.votacion.negocio.util.App;
+import edu.poli.gerencia.votacion.negocio.util.Util;
 import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jjmailsend.JJMailProperties;
 import jjmailsend.JJMailSend;
 
@@ -20,14 +25,15 @@ public class Email extends Thread {
     private String username;
     private String password;
     private JJMailProperties config;
-    private String address;
+    private Persona persona;
     private int tipo;
 
     public Email() {
-        this.host = "smtp.gmail.com";
-        this.port = "587";
-        this.username = "john.vanegas67@gmail.com";
-        this.password = "jhon1512211452";
+        App.init();
+        this.host = App.hostEmail;
+        this.port = App.portEmail;
+        this.username = App.usernameEmail;
+        this.password = App.passwordEmail;
         this.config = obtenerConfiguracion();
     }
 
@@ -42,9 +48,9 @@ public class Email extends Thread {
         }
     }
 
-    public void recuperarCuenta(String email) {
+    public void recuperarCuenta(Persona persona) {
         this.tipo = 1;
-        this.address = email;
+        this.persona = persona;
         this.start();
     }
 
@@ -65,15 +71,22 @@ public class Email extends Thread {
          * complicaciones junto a la plantilla solo se debe crear dicha
          * carpeta(attacments) y guardar allí todos los adjuntos.
          */
-        this.config.init();
-        this.config.setSubject("Recuperación de cuenta.");
-        String[] addresss = {this.address};
-        this.config.setAddresses(addresss);
-        this.config.setTemplate(new File("C:\\Users\\jhon1\\Documents\\NetBeansProjects\\votaciones\\web\\pages\\emailtemplates\\recoveraccount\\index.html"));
-        this.config.replace("#username#", "¡Hola John!,");
-        this.config.setHtml(true);
-        JJMailSend ms = new JJMailSend();
-        ms.sendMail(this.config);
+        try {
+            this.config.init();
+            this.config.setSubject("Recuperación de cuenta.");
+            String[] addresss = {this.persona.getCorreo()};
+            System.out.println(addresss);
+            this.config.setAddresses(addresss);
+            this.config.setTemplate(new File("C:\\Users\\jhon1\\Documents\\NetBeansProjects\\votacionesapp\\votacionesElectronica\\votaciones\\web\\pages\\emailtemplates\\recoveraccount\\index.html"));
+            this.config.replace("#username#", this.persona.getPrimerNombre());
+            this.config.replace("#URL#", App.urlApp + "updateaccount/" + Util.md5(this.persona.getCorreo()));
+            this.config.replace("#urlapp#", App.urlApp);
+            this.config.setHtml(true);
+            JJMailSend ms = new JJMailSend();
+            ms.sendMail(this.config);
+        } catch (Exception e) {
+            Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
 }

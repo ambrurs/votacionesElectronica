@@ -6,6 +6,7 @@
 package edu.poli.gerencia.votacion.negocio.servlets;
 
 import com.google.gson.Gson;
+import edu.poli.gerencia.votacion.modelo.dto.UsuarioDto;
 import edu.poli.gerencia.votacion.modelo.vo.Persona;
 import edu.poli.gerencia.votacion.modelo.vo.Usuario;
 import edu.poli.gerencia.votacion.negocio.constantes.EDireccion;
@@ -27,7 +28,11 @@ import javax.servlet.http.HttpSession;
             "/iniciarsesion",
             "/cerrarsesion",
             "/registrarusuario",
-            "/recuperarcuenta",}
+            "/recuperarcuenta",
+            "/comprobartoken",
+            "/actualizarcuenta",
+            "/comprobarsesion"
+        }
 )
 public class UsuariosServlet extends GenericoServlet implements IServlet {
 
@@ -55,6 +60,15 @@ public class UsuariosServlet extends GenericoServlet implements IServlet {
             case RECUPERAR_CUENTA:
                 respuesta = recuperarCuenta(request);
                 break;
+            case COMPROBAR_TOKEN:
+                respuesta = comprobarToken(request);
+                break;
+            case ACTUALIZAR_CUENTA:
+                respuesta = actualizarCuenta(request);
+                break;
+            case COMPROBAR_SESION:
+                respuesta = comprobarSesion(request);
+                break;
         }
         return respuesta;
     }
@@ -64,7 +78,7 @@ public class UsuariosServlet extends GenericoServlet implements IServlet {
         String clave = request.getParameter("clave");
         Respuesta respuesta = delegado.ingresar(usuario, clave);
         if (respuesta.getDatos() != null) {
-            Usuario usuarioVO = (Usuario) respuesta.getDatos();
+            UsuarioDto usuarioVO = (UsuarioDto) respuesta.getDatos();
             HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario", usuarioVO);
             System.out.println(sesion.getAttribute("usuario"));
@@ -88,8 +102,26 @@ public class UsuariosServlet extends GenericoServlet implements IServlet {
     private Respuesta recuperarCuenta(HttpServletRequest request) {
         String credencial = request.getParameter("credencial");
         System.out.println(credencial);
-//        return new Respuesta(EMensajes.EDITAR);
         return delegado.recuperarCuenta(credencial);
+    }
+
+    private Respuesta comprobarToken(HttpServletRequest request) {
+        String token = request.getParameter("token");
+        return delegado.comprobarToken(token);
+    }
+
+    private Respuesta actualizarCuenta(HttpServletRequest request) {
+        String claveNueva = request.getParameter("clave");
+        String token = request.getParameter("token");
+        return delegado.actualizarCuenta(claveNueva, token);
+    }
+
+    private Respuesta comprobarSesion(HttpServletRequest request) {
+        HttpSession sesion = request.getSession();
+        UsuarioDto usuario = (UsuarioDto) sesion.getAttribute("usuario");
+        Respuesta respuesta = new Respuesta(EMensajes.SESION_ACTIVA);
+        respuesta.setDatos(usuario);
+        return respuesta;
     }
 
 }

@@ -21,32 +21,37 @@ import javax.persistence.Query;
  * @author jhon1
  */
 public class UsuariosDAO extends GenericoDAO<Usuario> {
-    
+
     private EntityManager em;
-    
+
     @Override
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
     public UsuariosDAO(EntityManager em) {
         super(Usuario.class);
         this.em = em;
     }
-    
-    public Usuario iniciarSesion(String usuario, String clave) {
+
+    public Persona iniciarSesion(String usuario, String clave) {
         Query q = null;
         try {
-            int i = 0;
-            q = em.createNativeQuery("SELECT * FROM usuario WHERE NOMBRE_USUARIO = ? AND CONTRASENA = ?", Usuario.class);
+            int i = 1;
+            q = em.createNativeQuery("SELECT * FROM usuario u INNER JOIN persona p ON u.CONS_USUARIO = p.CONS_USUARIO WHERE u.NOMBRE_USUARIO = ? AND u.CONTRASENA = ? LIMIT 1", Persona.class);
             q.setParameter(i++, usuario);
             q.setParameter(i++, clave);
-            return (Usuario) q.getSingleResult();
+            if (q.getResultList().size() > 0) {
+                return (Persona) q.getSingleResult();
+            } else {
+                return null;
+            }
         } catch (Exception e) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, e);
             return null;
         }
     }
-    
+
     public boolean existeUsuario(Usuario usuario, Persona persona) throws Exception {
         Query q = null;
         int i = 0;
@@ -57,36 +62,37 @@ public class UsuariosDAO extends GenericoDAO<Usuario> {
         Persona personaTemp = (Persona) q.getSingleResult();
         return personaTemp != null;
     }
-    
-    public Usuario consultaUsuarioPorId(long idUsuario) {
+
+    public Usuario consultaUsuarioPorId(Integer idUsuario) {
         Query q = null;
         try {
-            q = em.createNativeQuery("SELECT * FROM usuarios WHERE CONS_USUARIO = ?", Usuario.class);
+            q = em.createNativeQuery("SELECT * FROM usuario WHERE CONS_USUARIO = ?", Usuario.class);
             q.setParameter(1, idUsuario);
             return (Usuario) q.getSingleResult();
         } catch (Exception e) {
+            Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, e);
             System.err.println("Se ha producido un error en: UsuariosDAO.consultaUsuarioPorId()" + e.getMessage());
             return null;
         }
     }
-    
+
     public Persona existeUsuario(String credencial) {
-        Query q = null;        
+        Query q = null;
         try {
             int i = 1;
-            q = em.createNativeQuery("SELECT * FROM usuario u INNER JOIN persona p ON u.CONS_USUARIO = p.CONS_USUARIO WHERE u.CONS_USUARIO = ? OR p.CORREO = ? OR p.NUMERO_DOCUMENTO = ? LIMIT 1", Persona.class);
+            q = em.createNativeQuery("SELECT * FROM usuario u INNER JOIN persona p ON u.CONS_USUARIO = p.CONS_USUARIO WHERE u.NOMBRE_USUARIO = ? OR p.CORREO = ? OR p.NUMERO_DOCUMENTO = ? LIMIT 1", Persona.class);
             q.setParameter(i++, credencial);
             q.setParameter(i++, credencial);
             q.setParameter(i++, credencial);
             if (q.getResultList().size() > 0) {
-                return (Persona) q.getSingleResult();                
+                return (Persona) q.getSingleResult();
             } else {
                 return null;
             }
         } catch (Exception e) {
             Logger.getLogger(UsuariosDAO.class.getName()).log(Level.SEVERE, null, e);
             return null;
-        }        
+        }
     }
-    
+
 }

@@ -18,7 +18,10 @@ public enum EDireccion {
     //Usuario
     REGISTRAR_USUARIO("/registrarusuario", "Registrar un usuario"),
     ACTUALIZAR_USUARIO("/actualizarusuario", "Actualizar un usuario"),
-    RECUPERAR_CUENTA("/recuperarcuenta","Comprueba que un usuario exista, y envia un correo de recuperación de cuenta al correo electrónico registrado."),
+    RECUPERAR_CUENTA("/recuperarcuenta", "Comprueba que un usuario exista, y envia un correo de recuperación de cuenta al correo electrónico registrado."),
+    COMPROBAR_TOKEN("/comprobartoken", "Comprobará si el token recibido se encuentra registrado y activo en la base de datos."),
+    ACTUALIZAR_CUENTA("/actualizarcuenta", "Actualiza la contraseña de la cuenta asociada al token de recuperación de cuenta."),
+    COMPROBAR_SESION("/comprobarsesion", "Comrpueba la sesión actual"),
     //Fin Usuario
     //Persona
     REGISTRAR_PERSONA("/registrarpersona", "Registrar persona"),
@@ -26,10 +29,10 @@ public enum EDireccion {
     ELIMINAR_PERSONA("/registrarpersona", "Registrar persona"),
     //Fin Persona
     //TipoDocumento
-    LISTAR_TIPODOCUMENTO("/listartipodocumento","Lista todos los tipos de documento"),
-    INSERTAR_TIPODOCUMENTO("/insertartipodocumento","Inserta un tipo de documento nuevo"),
-    ACTUALIZAR_TIPODOCUMENTO("/actualizartipodocumento","Actualiza un tipo de documento"),
-    ELIMINAR_TIPODOCUMENTO("/eliminartipodocumento","Elimina un tipo de documento"),
+    LISTAR_TIPODOCUMENTO("/listartipodocumento", "Lista todos los tipos de documento"),
+    INSERTAR_TIPODOCUMENTO("/insertartipodocumento", "Inserta un tipo de documento nuevo"),
+    ACTUALIZAR_TIPODOCUMENTO("/actualizartipodocumento", "Actualiza un tipo de documento"),
+    ELIMINAR_TIPODOCUMENTO("/eliminartipodocumento", "Elimina un tipo de documento"),
     //Fin Tipo Documento
     DESCONOCIDO(null, "Desconocido.");
 

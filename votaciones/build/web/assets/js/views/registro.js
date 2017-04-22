@@ -16,7 +16,7 @@ $(function () {
             }
         },
         eventos: function () {
-            $('#form_registro').on('submit', function (e) {
+            $('#form_registro').validator().on('submit', function (e) {
                 __app.detenerEvento(e);
                 console.log("Submit");
                 var form = $(this);

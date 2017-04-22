@@ -28,4 +28,12 @@ http://www.tuckey.org/urlrewrite
         <from>^/recoveraccount/</from>
         <to>/recover_account_page.html</to>
     </rule>
+    <rule>
+        <from>^/dashboard/</from>
+        <to>/dashboard_page.html</to>
+    </rule>
+    <rule>
+        <from>^/updateaccount/([a-z0-9]+)</from>
+        <to>/update_and_recover_account.html</to>
+    </rule>
 </urlrewrite>

@@ -68,7 +68,7 @@ public class TipoDocumento implements Serializable {
     public void setNombreDocumento(String nombreDocumento) {
         this.nombreDocumento = nombreDocumento;
     }
-
+//
 //    @XmlTransient
 //    public Collection<Persona> getPersonaCollection() {
 //        return personaCollection;
