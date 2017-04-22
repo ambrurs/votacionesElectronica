@@ -18,6 +18,13 @@ http://www.tuckey.org/urlrewrite
         <to>/register_page.html</to>
     </rule>
     <rule>
+        <name>Se bloquean los accesos a las páginas privadas</name>
+        <condition type="method">GET</condition>
+        <from>^/pages/.*$</from>
+        <set type="status">403</set>
+        <to>/errors/403.html</to>
+    </rule>
+    <rule>
         <from>^/recoveraccount/</from>
         <to>/recover_account_page.html</to>
     </rule>
