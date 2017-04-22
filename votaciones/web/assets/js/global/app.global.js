@@ -56,13 +56,15 @@ var __app = {
         ajax.error = (error) ? error : __app.ajaxError;
         return ajax;
     },
+    beforeSend: function(data){        
+    },
     ajax: function (args) {
         var ajax = new Object();
         ajax.url = __app.urlbase + args.url;
         ajax.type = (args.type) ? args.type : "POST";
         ajax.data = (args.data);
         ajax.dataType = (args.dataType) ? args.dataType : "json";
-        ajax.beforeSend = args.beforeSend;
+        ajax.beforeSend = (args.beforeSend) ? args.beforeSend : __app.beforeSend;
         ajax.complete = args.complete;
         ajax.success = (args.success);
         ajax.error = (args.error) ? args.error : __app.error;

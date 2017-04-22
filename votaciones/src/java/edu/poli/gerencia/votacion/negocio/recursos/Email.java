@@ -26,8 +26,8 @@ public class Email extends Thread {
     public Email() {
         this.host = "smtp.gmail.com";
         this.port = "587";
-        this.username = "jhonjaider100015@gmail.com";
-        this.password = "jhon8513";
+        this.username = "john.vanegas67@gmail.com";
+        this.password = "jhon1512211452";
         this.config = obtenerConfiguracion();
     }
 

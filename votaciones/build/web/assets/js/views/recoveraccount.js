@@ -18,6 +18,9 @@ $(function () {
             var form = $(this);
             var credencial = form.find('#usuario');
             if (credencial.val().trim() != "") {
+                __app.beforeSend = function () {
+                    $('#alert').removeClass('hidden alert-success').addClass('alert-info').find('#text').html('<i class="fa fa-fw fa-refresh fa-spin"></i> Enviando...');
+                };
                 __app.post('recuperarcuenta', {credencial: credencial.val()}, RecoverAccount.onConsultaRecuperarCuenta);
 //                __dom.imprimirAlerta("Lo sentimos, no se encontró ninguna coincidencia.");
             } else {
@@ -25,6 +28,11 @@ $(function () {
             }
         },
         onConsultaRecuperarCuenta: function (respuesta) {
+            if (__app.respuestaExistosa(respuesta)) {
+                __dom.imprimirAlerta("Se ha enviado el correo de recuperación de cuenta a tu bandeja de entrada.", "success");
+            }else{
+                __dom.imprimirAlerta("Lo sentimos no existe ninguna coincidencia con las credenciales ingresadas.","danger");
+            }
             console.log(respuesta);
         },
     };
