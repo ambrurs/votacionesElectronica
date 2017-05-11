@@ -1,0 +1,142 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-cog"></i> Configuración cuenta
+        </div>
+        <div class="card-block">                        
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="/votaciones/assets/img/avatars/usuario.jpg" class="img-responsive" />
+                </div>
+                <div class="col-md-9">
+                    <form class="" id="formUsuario">                        
+                        <div class="">
+                            <div class="card-block">
+                                <input type="hidden" name="consUsuario.consUsuario" id="consUsuario" />
+                                <input type="hidden" name="consPersona" id="consPersona" />
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-12">
+                                        <div class="alert alert-success alert-dismissable hidden" id="alertActualizar">
+                                            <a href="#" class="custom-close close" >&times;</a>
+                                            <span id="text"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group" title="Nombre de usuario">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Nombre de usuario" required="" maxlength="50" id="txtNombreusuario" name="consUsuario.nombreUsuario" />
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group" title="Correo electrónico">
+                                                <span class="input-group-addon">@</span>
+                                                <input type="email" class="form-control undisabled" placeholder="Correo electrónico" disabled="" maxlength="150" id="txtCorreoElectronico" name="correo">
+                                            </div>                                            
+                                        </div>  
+                                    </div>
+                                </div>            
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group" title="Primer nombre">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Primer nombre" required="" maxlength="50" id="txtPrimerNombre" name="primerNombre" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" title="Segundo nombre">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Segundo nombre" required="" maxlength="50" id="txtSegundoNombre" name="segundoNombre" />
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group" title="Primer apellido">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Primer Apellido" required="" maxlength="50" id="txtPrimerApellido"  name="primerApellido"/>
+                                            </div>                                    
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" title="Segundo apellido">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Segundo Apellido" required="" maxlength="50" id="txtSegundoApellido" name="segundoApellido" />
+                                            </div>                                    
+                                        </div>
+                                    </div>
+                                </div>                                                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group" title="Tipo de documento">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <select id="cmbTipoDocumento" class="form-control" required="" name="idTipoDocumento.idTipoDocumento" ></select>
+                                            </div>                                            
+                                        </div>  
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group" title="Número de documento">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-user"></i>
+                                                </span>
+                                                <input type="text" class="form-control" placeholder="Número documento" required="" maxlength="30" id="txtNumeroDocumento" name="numeroDocumento" />
+                                            </div>                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row hidden" id="panelContrasena">
+                                    <div class="col-md-6">
+                                        <div class="form-group has-error has-danger">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-lock"></i>
+                                                </span>
+                                                <input type="password" class="form-control" placeholder="Contraseña" id="txtClave" name="consUsuario.contrasena">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="icon-lock"></i>
+                                                </span>
+                                                <input type="password" class="form-control" id="txtRepetirClave" placeholder="Repetir contraseña" data-match="#txtClave" >
+                                            </div>                                            
+                                        </div>   
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-secondary" id="btnCancelarCambiarClave"><i class="fa fa-fw fa-times"></i> Cancelar</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-primary" id="btnCambiarContrasena"><i class="fa fa-fw fa-lock"></i> Cambiar contraseña</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success" id="btnGuardar" >Guardar Cambios</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/votaciones/assets/js/libs/md5.js" type="text/javascript"></script>
+<script src="/votaciones/assets/js/views/dashboard/generic/configuracioncuenta.js" type="text/javascript"></script>

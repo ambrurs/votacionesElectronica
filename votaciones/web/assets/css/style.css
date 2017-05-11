@@ -2,7 +2,7 @@
  * GenesisUI - Bootstrap 4 Admin Template
  * @version v1.8.1
  * @link https://genesisui.com
- * Copyright (c) 2017 creativeLabs Ãƒâ€¦Ã‚Âukasz Holeczek
+ * Copyright (c) 2017 creativeLabs ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Âukasz Holeczek
  * @license Commercial
  */
 @charset "UTF-8";
@@ -1687,7 +1687,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 
 .has-danger .form-control, .has-danger .daterangepicker .input-mini, .daterangepicker .has-danger .input-mini, .has-danger .input-group > .ui-select-bootstrap > input.ui-select-search.form-control {
     border-color: #ff5454 !important;
-    }
+}
 
 .has-danger .input-group-addon {
     color: #ff5454;
@@ -2837,7 +2837,7 @@ header.navbar .navbar-brand {
     background-position: center center;
     background-size: 90px auto;
     border-bottom: 1px solid #1985ac;
-    }
+}
 header.navbar .navbar-nav {
     flex-direction: row;
     align-items: center; }
@@ -6081,7 +6081,7 @@ a.bg-inverse:focus, a.bg-inverse:hover {
 
 .text-muted {
     color: #a4abb9 !important;
-    }
+}
 
 a.text-muted:focus, a.text-muted:hover {
     color: #9faecb !important; }
@@ -8727,7 +8727,7 @@ be a descendant of the grid when it is being dragged.
 
 /* Ion.RangeSlider
 // css version 2.0.3
-// Ãƒâ€šÃ‚Â© 2013-2014 Denis Ineshin | IonDen.com
+// ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© 2013-2014 Denis Ineshin | IonDen.com
 // ===================================================================================================================*/
 /* =====================================================================================================================
 // RangeSlider */
@@ -8882,7 +8882,7 @@ be a descendant of the grid when it is being dragged.
 
 /* Ion.RangeSlider, Modern Skin
 // css version 2.0.3
-// Ãƒâ€šÃ‚Â© Denis Ineshin, 2014    https://github.com/IonDen
+// ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â© Denis Ineshin, 2014    https://github.com/IonDen
 // ===================================================================================================================*/
 /* =====================================================================================================================
 // Skin details */
@@ -13783,3 +13783,85 @@ base-chart.chart {
     font-size: 14px;
     margin: -2px 0px 0px 5px;
     color: #e1e6ef; }
+
+.jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+    border-radius: 6px;
+}
+.jumbotron {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    color: inherit;
+    background-color: #f9f9fa;
+    border: 1px solid #eee;
+}
+.img-responsive{
+    width: 100%;
+}
+.contacts .c-item {
+    border: 1px solid #e2e2e2;
+    border-radius: 2px;
+    margin-bottom: 24px;
+}
+.contacts .c-item .ci-avatar {
+    display: block;
+}
+.contacts .ci-avatar {
+    margin: -1px -1px 0;
+}
+.contacts .c-item .ci-avatar img {
+    width: 100%;
+    border-radius: 2px 2px 0 0;
+    vertical-align: middle;
+}
+.contacts .c-info {
+    margin-top: 15px;
+    padding: 0 5px;
+}
+.contacts .c-info small, .contacts .c-info strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.contacts .c-info strong {
+    color: #000;
+    font-size: 14px;
+    font-weight: 500;
+}
+.contacts .c-info small, .contacts .c-info strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.contacts .c-info small {
+    color: #999;
+    margin-top: 3px;
+}
+.small, small {
+    font-size: 92%;
+}
+.contacts .c-footer {
+    border-top: 1px solid #e2e2e2;
+    margin-top: 18px;
+}
+.contacts .c-footer>button {
+    padding: 7px 10px;
+    color: #333;
+    display: block;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 2px;
+    background: #fff;
+    border: 0;
+}
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    user-select: none;
+}

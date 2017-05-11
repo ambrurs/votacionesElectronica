@@ -7,7 +7,6 @@
 Configuration file for UrlRewriteFilder
 http://www.tuckey.org/urlrewrite
 -->
-
 <urlrewrite>
     <rule>
         <from>^/login/</from>
@@ -19,7 +18,7 @@ http://www.tuckey.org/urlrewrite
     </rule>
     <rule>
         <name>Se bloquean los accesos a las páginas privadas</name>
-        <condition type="method">GET</condition>
+        <condition type="method">GET</condition>        
         <from>^/pages/.*$</from>
         <set type="status">403</set>
         <to>/errors/403.html</to>
@@ -30,7 +29,7 @@ http://www.tuckey.org/urlrewrite
     </rule>
     <rule>
         <from>^/dashboard/</from>
-        <to>/dashboard_page.html</to>
+        <to>/getdashboard</to>
     </rule>
     <rule>
         <from>^/updateaccount/([a-z0-9]+)</from>

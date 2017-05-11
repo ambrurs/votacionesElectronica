@@ -1,0 +1,106 @@
+<div class="animated fadeIn">
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-check"></i> <span id="titulo"><i class="fa fa-fw fa-refresh fa-spin"></i> Cargando detalles</span>
+        </div>
+        <div class="card-block">            
+            <div class="row">
+                <div class="col-xs-12 col-md-12">
+                    <div class="alert alert-info alert-dismissable" id="alertDetallesVotacion">
+                        <a href="#" class="custom-close close" >&times;</a>
+                        <span id="text"><i class="fa fa-fw fa-refresh fa-spin"></i> Consultando detalles de la votación</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row hidden" id="contentInfoVotacion">
+                <div class="col-md-3">
+                    <label id='fechasInscripcion' class='display-block'><strong class='display-block'><i class="fa fa-fw fa-calendar"></i> Fechas de inscripción:</strong> <span id='fechaInicioInscripcion' class='fecha'>0000/00/00</span> - <span id='fechaFinInscripcion' class='fecha'>0000/00/00</span></label>
+                    <label id='fechasVotacion' class='display-block m-t-15'><strong class="display-block"><i class="fa fa-fw fa-calendar"></i> Fechas de votación:</strong> <span id='fechaInicioVotacion' class='fecha'>0000/00/00</span> - <span id='fechaFinVotacion' class='fecha'>0000/00/00</span></label>
+                    <hr/>
+                    <label class='display-block m-t-15'><strong class="m-r-5"><i class=""></i> Votos:</strong> <span class="text-center"><kbd id='numVotos'>0</kbd></span></label>
+                    <hr/>
+                    <label class='display-block m-t-15'><strong class="m-r-5"><i class=""></i> Candidatos:</strong> <span class="text-center"><kbd id='numCandidatos'>0</kbd></span></label>
+                    <hr/>
+                    <label class='display-block m-t-15'><strong class="m-r-5"><i class=""></i> Estado:</strong> <span id='estadoVotacion'></span></label>
+                </div>
+                <div class='col-md-9' id='profile-main'>
+                    <button class="btn btn-primary" id='btnPostular'><i class="fa fa-fw fa-user-plus"></i> Inscribirse como candidato</button>
+                    <hr/>
+                    <div class="pmb-block">                       
+                        <div class="contacts c-profile clearfix row" id="listaCandidatos">
+                            <div class='col-md-12'>
+                                <div class="alert alert-info alert-dismissable" id="alertaCuerpoDetalleVotacion">
+                                    <a href="#" class="custom-close close" >&times;</a>
+                                    <span id="text"><i class="fa fa-fw fa-info-circle"></i> Seleccione un usuario y confirme la votación.</span>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-4 col-xs-6 modelo hidden">
+                                <div class="c-item">
+                                    <a href="javascript:;" class="ci-avatar">
+                                        <img src="../assets/img/avatars/usuario.jpg" alt="" id='imagenUsuario'>
+                                    </a>
+
+                                    <div class="c-info">
+                                        <strong id='nombrePersona' class="text-center cursor-pointer"></strong>
+                                        <small id='nombreUsuario' class='text-center'></small>
+                                    </div>
+                                    <div class="c-footer">
+                                        <button class="waves-effect btn-item-votar"><i class="zmdi zmdi-face-add"></i> Seleccionar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL CONFIRMAR VOTACION-->
+<div id="modalConfirmarVotacion" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title"><i class="fa fa-fw fa-warning"></i> Confirmar votación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="alert alert-info alert-dismissable hidden" id="alertConfirmarVotacion">
+                            <a href="#" class="custom-close close" >&times;</a>
+                            <span id="text"><i class="fa fa-fw fa-refresh fa-spin"></i> Enviando votación...</span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="../assets/img/avatars/usuario.jpg" class="img-responsive" id="imgUsuario" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <label class="descripcion m-r-5 text-bold">Nombres:</label>
+                            <span class="detalle" id="nombres"></span>
+                        </div>
+                        <div class="input-group">
+                            <label class="descripcion m-r-5 text-bold">Apellidos:</label>
+                            <span clasS="detalle" id="apellidos"></span>
+                        </div>
+                        <div class="input-group">
+                            <label class="descripcion m-r-5 text-bold">Usuario:</label>
+                            <span class="detalle" id="usuario"></span>
+                        </div>
+                    </div>
+                </div>
+                <p class="m-t-5"><strong>Nota: </strong> Una vez haya votado no podrá cancelar, editar y/o volver a participar en la misma votación. Si está seguro haga clic en Enviar Voto.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btnEnviarVoto">Enviar voto</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--FIN MODAL CONFIRMAR VOTACION-->
+<script src="../assets/js/views/dashboard/generic/detallesvotacion.js" type="text/javascript"></script>

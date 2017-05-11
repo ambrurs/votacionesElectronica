@@ -37,7 +37,6 @@
         <location>/errors/503.html</location>
     </error-page>
     <!--Fin Control de errores-->
-    
     <filter>
         <filter-name>UrlRewriteFilter</filter-name>
         <filter-class>org.tuckey.web.filters.urlrewrite.UrlRewriteFilter</filter-class>

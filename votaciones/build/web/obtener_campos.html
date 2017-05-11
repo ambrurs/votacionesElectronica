@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Obtener Campos</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="assets/css/font-awesome.min.css" rel="stylesheet">
+        <link href="assets/css/style.css" rel="stylesheet">
+        <link href="assets/css/helper-class.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <div class="container">
+            <div class="panel panel-dfault" style="margin-top: 30px;">
+                <div class="panel-heading">                    
+                    Obtener objeto
+                </div>
+                <div class="panel-body">
+                    <form id="form" style="width: 500px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="txtTabla" placeholder="Tabla" />
+                            <div class="input-group-btn">
+                                <button class="btn btn-success"><i class="fa fa-fw fa-cog"></i> Procesar</button>
+                            </div>
+                        </div>                 
+                        <div style="display: block; width: 500px; margin-top: 30px; border: 1px solid #ccc;">
+                            <textarea id="txtJSON" rows="6" class="form-control" placeholder="JSON"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="assets/js/libs/jquery.min.js"></script>
+        <script type="text/javascript">
+            function separe(string) {
+                return string.replace(/\_/g, ' ').toLowerCase();
+            }
+            function camelCase(string) {
+                return string.replace(/\s(.)/g, function ($1) {
+                    return $1.toUpperCase();
+                })
+                        .replace(/\s/g, '')
+                        .replace(/^(.)/, function ($1) {
+                            return $1.toLowerCase();
+                        });
+            }
+            $(function () {
+                $('#form').on('submit', function (e) {
+                    e.preventDefault();
+                    var form = $(this);
+                    var tabla = form.find('#txtTabla').val();
+                    $.ajax({
+                        url: 'http://localhost:8084consultarcampos',
+                        data: {tabla: tabla},
+                        success: function (data) {
+                            console.log(data);
+                            if (data.codigo > 0) {
+                                var key = null;
+                                var json = new Object();
+                                for (var i = 0; i < data.datos.length; i++) {
+                                    key = data.datos[i].name;
+                                    key = separe(key);
+                                    key = camelCase(key);
+                                    json[key] = null;
+                                }
+                                console.log(JSON.stringify(json));
+                                $('#txtJSON').val(JSON.stringify(json));
+                            }
+                        },
+                        error: function (e) {
+                            console.error(e);
+                        }
+                    });
+                });
+            })
+        </script>
+    </body>
+</html>

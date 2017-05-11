@@ -274,3 +274,6 @@ a.link-normal{
 a.link-normal:hover{
     text-decoration: underline !important;
 }
+.hidden{
+    display: none !important;
+}

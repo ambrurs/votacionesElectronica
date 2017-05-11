@@ -7,9 +7,10 @@
 
 $(function ()
 {
-    var Login = {        
+    var Login = {
         init: function () {
-            Login.eventos();            
+            Login.eventos();
+            sessionStorage.clear();
         },
         eventos: function () {
             $('.close').on('click', function () {
@@ -21,6 +22,8 @@ $(function ()
             __app.detenerEvento(e);
             var form = $(this);
             if (Login.validarFormulario(form)) {
+                Login.imprimirAlerta('<i class="fa fa-fw fa-refresh fa-spin"></i> Ingresando...', "cargando", 'info');
+                form.find('input,button').prop('disabled', true);
                 __app.post("iniciarsesion",
                         {
                             usuario: form.find('#usuario').val(),
@@ -30,12 +33,18 @@ $(function ()
                             if (__app.respuestaExistosa(respuesta)) {
                                 location.href = __app.base("dashboard/");
                             } else {
-                                Login.imprimirError("Error en el usuario o la clave.");
+                                Login.imprimirAlerta((respuesta.codigo == -1) ? "Error en el usuario o la clave." : respuesta.mensaje);
                             }
                         },
                         function (e) {
                             console.error(e);
-                            Login.imprimirError("Ocurrió un error y no se pudo iniciar.");
+                            Login.imprimirAlerta("Ocurrió un error y no se pudo iniciar.");
+                        },
+                        null,
+                        function ()
+                        {
+                            form.find('input,button').prop('disabled', false);
+                            form.find('input:eq(0)').focus();
                         });
             } else {
                 return;
@@ -50,13 +59,13 @@ $(function ()
             form.find('.alert ul').html("");
             var valid = 0;
             if (form.find('#usuario').val().trim() === "") {
-                Login.imprimirError("Debes ingresar un usuario válido", "errorusuario");
+                Login.imprimirAlerta("Debes ingresar un usuario válido", "errorusuario");
                 valid--;
             } else {
                 form.find('.alert ul #errorusuario').remove();
             }
             if (form.find('#clave').val().trim() === "") {
-                Login.imprimirError("Debes ingresar una clave válida", "errorclave");
+                Login.imprimirAlerta("Debes ingresar una clave válida", "errorclave");
                 valid--;
             } else {
                 form.find('.alert ul #errorclave').remove();
@@ -68,9 +77,10 @@ $(function ()
                 return false;
             }
         },
-        imprimirError: function (mensaje, clave) {
+        imprimirAlerta: function (mensaje, clave, tipo) {
             var alert = $('form .alert');
-            alert.attr('class', 'alert alert-danger alert-dismissable').hide().slideDown(500);
+            alert.find('#cargando').remove();
+            alert.attr('class', 'alert alert-' + ((tipo) ? tipo : 'danger') + ' alert-dismissable').hide().slideDown(500);
             alert.find('ul').append('<li id="' + clave + '">' + mensaje + '</li>');
         }
     };
