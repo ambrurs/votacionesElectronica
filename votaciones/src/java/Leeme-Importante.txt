@@ -1,0 +1,2 @@
+Al publicar el proyecto, recomendado quitar los Logger de los Try catch para que
+no impriman nada en la consola.

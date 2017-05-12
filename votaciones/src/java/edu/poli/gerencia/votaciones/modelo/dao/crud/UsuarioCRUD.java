@@ -30,7 +30,7 @@ public class UsuarioCRUD implements IGenericoDAO<Usuario> {
     public void insertar(Usuario usuario) throws SQLException {
         PreparedStatement ps = null;
         try {
-            String sql = "INSERT INTO usuario (ID_TIPO_USUARIO, NOMBRE_USUARIO, CONTRASENA, ACTIVO, ULTIMO_INGRESO, FECHA_REGISTRO, FECHA_ACTUALIZACION) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO usuario (ID_TIPO_USUARIO, NOMBRE_USUARIO, CONTRASENA, ACTIVO, ULTIMO_INGRESO, FECHA_REGISTRO, FECHA_ACTUALIZACION) VALUES (?,?,?,?,?,now(),?)";
             ps = cnn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             setUsuario(ps, usuario, true);
             ps.executeUpdate();
@@ -47,7 +47,7 @@ public class UsuarioCRUD implements IGenericoDAO<Usuario> {
     public void actualizar(Usuario usuario) throws SQLException {
         PreparedStatement ps = null;
         try {
-            String sql = "UPDATE usuario SET CONS_USUARIO = ?, ID_TIPO_USUARIO = ?, NOMBRE_USUARIO = ?, CONTRASENA = ?, ACTIVO = ?, ULTIMO_INGRESO = ?, FECHA_REGISTRO = ?, FECHA_ACTUALIZACION = ? WHERE CONS_USUARIO = ?";
+            String sql = "UPDATE usuario SET CONS_USUARIO = ?, ID_TIPO_USUARIO = ?, NOMBRE_USUARIO = ?, CONTRASENA = ?, ACTIVO = ?, ULTIMO_INGRESO = ?, FECHA_ACTUALIZACION = ? WHERE CONS_USUARIO = ?";
             ps = cnn.prepareStatement(sql);
             setUsuario(ps, usuario, true);
             ps.executeUpdate();
@@ -202,7 +202,6 @@ public class UsuarioCRUD implements IGenericoDAO<Usuario> {
         ps.setString(i++, (usuario.getContrasena() != null) ? usuario.getContrasena() : null);
         ps.setString(i++, (usuario.getActivo() != null) ? usuario.getActivo() : null);
         ps.setTimestamp(i++, (usuario.getUltimoIngreso() != null) ? DateUtil.parseTimestamp(usuario.getUltimoIngreso()) : null);
-        ps.setTimestamp(i++, (usuario.getFechaRegistro() != null) ? DateUtil.parseTimestamp(usuario.getFechaRegistro()) : null);
         ps.setTimestamp(i++, (usuario.getFechaActualizacion() != null) ? DateUtil.parseTimestamp(usuario.getFechaActualizacion()) : null);
         if (usuario.getConsUsuario() != null) {
             if (flag) {

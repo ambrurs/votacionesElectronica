@@ -106,22 +106,24 @@ public class TipoUsuarioServlet extends GenericoServlet implements IServlet {
     }
 
     private Respuesta eliminar(HttpServletRequest request) throws VotacionesException {
-        if (!SesionUtil.esAdministrador(request)) {
-            throw new VotacionesException(EMensajes.ACCESO_DENEGADO);
-        }
         Respuesta respuesta = null;
-        String json = request.getParameter("tipoUsuario");
-        String id = request.getParameter("id");
-        if (json != null) {
-            TipoUsuario tipoUsuario = GsonUtil.getInstanceShort().fromJson(json, TipoUsuario.class);
-            tipoUsuarioDelegado.eliminar(tipoUsuario);
-            respuesta = new Respuesta(EMensajes.ELIMINAR);
-        }
-        if (id != null) {
-            tipoUsuarioDelegado.eliminar(Integer.parseInt(id));
-            respuesta = new Respuesta(EMensajes.ELIMINAR);
-        }
-        return respuesta;
+        //Controlar mejor los roles para la siguente versión del sistema.
+        //Inicialemente estoy lanzando esta excepción para que no se permita la eliminación
+        //de ningún rol por el momento, mi consejo es que se cree un campo en la tabla
+        //tipo_usuario llamado privilegio y por medio de este se controlen los permisos de 
+        //cada tipo de usuario nuevo creado por medio del administrador en la aplicación.
+        //ya que he integrado una clase llamada SesionUtil, y la estoy utilizando para
+        //determinar el tipo de usuario que se encuentra logueado en el sistema para 
+        //invicar y determinar los permisos de algunas acciones, no costará mucho trabajo.
+//        if (!SesionUtil.esAdministrador(request)) {
+        throw new VotacionesException(EMensajes.ACCESO_DENEGADO);
+//        }        
+//        String id = request.getParameter("id");
+//        if (id != null) {
+//            tipoUsuarioDelegado.eliminar(Integer.parseInt(id));
+//            respuesta = new Respuesta(EMensajes.ELIMINAR);
+//        }
+//        return respuesta;
     }
 
     private Respuesta buscarPorId(HttpServletRequest request) throws VotacionesException {

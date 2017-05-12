@@ -37,7 +37,6 @@ $(function ()
                             }
                         },
                         function (e) {
-                            console.error(e);
                             Login.imprimirAlerta("Ocurrió un error y no se pudo iniciar.");
                         },
                         null,

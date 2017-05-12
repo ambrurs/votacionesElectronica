@@ -17,7 +17,6 @@ $(function () {
             var btn = $(this);
             var row = btn.parent().parent();
             var datos = TipoEstadoVotacion.tablaTipoEstadosVotacion.row(row).data();
-            console.log(datos);
             if (btn.hasClass("btn-editar")) {
                 TipoEstadoVotacion.editar(datos);
             } else if (btn.hasClass("btn-eliminar")) {

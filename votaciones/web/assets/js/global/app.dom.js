@@ -62,7 +62,6 @@ var __dom = {
         return formatDate(fecha, 'yyyy/MM/dd');
     },
     imprimirToast: function (titulo, mensaje, tipo) {
-        console.log(tipo);
         switch (tipo) {
             case "success":
                 toastr.success(mensaje, titulo, {

@@ -13,7 +13,6 @@ $(function () {
             $('#contentInfoVotacion').on('click', '.item-candidato', function () {
                 var indice = $(this).attr('data-indice');
                 var datos = DetallesVotacion.listaCandidatos[indice];
-                console.log(datos);
                 DetallesVotacion.votar(datos);
             });
         },
@@ -99,7 +98,6 @@ $(function () {
             }
         },
         listarCandidatos: function (datos) {
-            console.log("Lista candidatos>> ", datos);
             var content = $('#listaCandidatos');
             content.find(".item-candidato").remove();
             if (datos) {
@@ -109,7 +107,6 @@ $(function () {
                 var clon = null;
                 for (var i = 0; i < datos.length; i++) {
                     dato = datos[i];
-                    console.log(dato);
                     clon = modelo.clone().removeClass('model hidden').addClass('item-candidato').attr('data-indice', i);
                     clon.find('.btn-item-votar').attr('data-indice', i);
                     var nombre = dato.primerNombre + " " + dato.segundoNombre + " " + dato.primerApellido + " " + dato.segundoApellido;

@@ -41,28 +41,14 @@ public class Email {
         this.config = obtenerConfiguracion();
     }
 
-    public boolean run() throws VotacionesException {
-        switch (this.tipo) {
-            case 1:
-                //Recuperar cuenta.
-                return this.emailRecuperacionCuenta();
-            case 2:
-                //Activar cuenta.
-                return this.emailActivarCuenta();
-        }
-        return false;
-    }
-
     public boolean recuperarCuenta(Persona persona) throws VotacionesException {
-        this.tipo = 1;
         this.persona = persona;
-        return run();
+        return this.emailRecuperacionCuenta();
     }
 
     public boolean activarCuenta(Persona persona) throws VotacionesException {
-        this.tipo = 2;
         this.persona = persona;
-        return run();
+        return this.emailActivarCuenta();
     }
 
     private JJMailProperties obtenerConfiguracion() {
@@ -88,7 +74,7 @@ public class Email {
             this.config.setFromName(App.fromName);
             this.config.setSubject("Recuperación de cuenta.");
             String[] addresss = {this.persona.getCorreo()};
-            System.out.println(this.persona.getCorreo());            
+            System.out.println(this.persona.getCorreo());
             this.config.setAddresses(addresss);
             String pathTemplate = EmailTemplates.RECUPERAR_CUENTA.getPath();
             this.config.setTemplate(new File(pathProject + pathTemplate));

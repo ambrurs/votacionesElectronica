@@ -20,7 +20,6 @@ $(function () {
         //Interpreta el cambio de url y carga la página.
         hashChange: function () {
             var hash = location.hash;
-            console.log(hash);
             if (hash.trim() != "") {
                 Dashboard.cargarPagina(Dashboard.obtenerURL(hash));
             }

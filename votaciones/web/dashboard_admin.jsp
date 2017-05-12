@@ -174,8 +174,7 @@
         <script src="../assets/js/libs/validator.min.js" type="text/javascript"></script>
         <script src="../assets/js/libs/JJHelpForm.min.js" type="text/javascript"></script>
 
-        <!-- Custom scripts -->
-        <!--<script src="../assets/js/views/main.js"></script>-->
+        <!-- Custom scripts -->        
         <script src="../assets/js/global/app.dom.js" type="text/javascript"></script>
         <script src="../assets/js/global/app.global.js" type="text/javascript"></script>
         <script src="../assets/js/views/dashboard.js" type="text/javascript"></script>

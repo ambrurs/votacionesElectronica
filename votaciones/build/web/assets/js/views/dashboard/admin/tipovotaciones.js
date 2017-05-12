@@ -16,8 +16,7 @@ $(function () {
         onClickBotonControl: function () {
             var btn = $(this);
             var row = btn.parent().parent();
-            var datos = TipoVotaciones.tablaTipoVotaciones.row(row).data();
-            console.log(datos);
+            var datos = TipoVotaciones.tablaTipoVotaciones.row(row).data();            
             if (btn.hasClass("btn-editar")) {
                 TipoVotaciones.editar(datos);
             } else if (btn.hasClass("btn-eliminar")) {

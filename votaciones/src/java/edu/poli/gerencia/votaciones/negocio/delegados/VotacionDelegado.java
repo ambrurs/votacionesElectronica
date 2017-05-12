@@ -9,6 +9,7 @@ import edu.poli.gerencia.votaciones.modelo.vo.CandidatoVotacion;
 import edu.poli.gerencia.votaciones.modelo.vo.Persona;
 import edu.poli.gerencia.votaciones.modelo.vo.Usuario;
 import edu.poli.gerencia.votaciones.negocio.constantes.EMensajes;
+import edu.poli.gerencia.votaciones.negocio.utiles.SesionUtil;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -58,16 +59,14 @@ public class VotacionDelegado extends GenericoDelegado<Votacion> {
 
     public List<Votacion> listarVotaciones(Usuario usuario) throws VotacionesException {
         try {
-            String sql = "SELECT p.*, tpu.ID_TIPO_USUARIO FROM persona p "
+            String sql = null;
+            sql = "SELECT p.*, u.ID_TIPO_USUARIO FROM persona p "
                     + "INNER JOIN usuario u ON u.CONS_USUARIO = p.CONS_USUARIO "
-                    + "INNER JOIN tipo_usuario tpu "
-                    + "ON u.ID_TIPO_USUARIO = tpu.ID_TIPO_USUARIO "
                     + "WHERE p.CONS_USUARIO = " + usuario.getConsUsuario();
             PersonaDAO pDAO = new PersonaDAO(cnn);
             Persona persona = pDAO.consultar(sql);
             Integer idTipoUsuario = persona.getConsUsuario().getIdTipoUsuario().getIdTipoUsuario();
             Integer idUsuario = 0;
-            System.out.println("ID TIPO USUARIO >> " + idTipoUsuario);
             switch (idTipoUsuario) {
                 case 1: //Administrador.
                     idUsuario = persona.getConsUsuario().getConsUsuario();
@@ -77,6 +76,8 @@ public class VotacionDelegado extends GenericoDelegado<Votacion> {
                     break;
                 case 3: //Empleado.
                     idUsuario = persona.getConsPersonaAsociada();
+                    persona = pDAO.buscarPorId(idUsuario);
+                    idUsuario = persona.getConsUsuario().getConsUsuario();
                     break;
             }
             sql = "SELECT v.*, tv.NOMBRE_TIPO_VOTACION FROM votacion v \n"
@@ -112,7 +113,7 @@ public class VotacionDelegado extends GenericoDelegado<Votacion> {
                     //Consultamos si el usuario no ha votado antes.
                     sql = "SELECT cv.* FROM votacion_usuario_candidato vuc \n"
                             + "INNER JOIN candidato_votacion cv ON vuc.CANDIDATO_VOTACION_CONS_CANDIDATO = cv.CONS_CANDIDATO \n"
-                            + "WHERE cv.VOTACION_CONS_VOTACION = 1 AND vuc.USUARIO_CONS_USUARIO = 29";
+                            + "WHERE cv.VOTACION_CONS_VOTACION = " + votacion.getConsVotacion() + " AND vuc.USUARIO_CONS_USUARIO = " + usuario.getConsUsuario();
                     map.put("usuarioActualHaVotado", (cvDAO.listaConsultar(sql).size() > 0));
                 }
             }

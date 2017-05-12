@@ -23,7 +23,6 @@ var __sesion = {
             async: false,
             success: function (respuesta) {
                 if (respuesta.codigo <= 0) {
-                    console.log(respuesta);
                     location.href = __sesion.urlbase;
                 } else {
                     __sesion.guardarSesion(respuesta.datos);

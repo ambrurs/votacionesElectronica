@@ -101,7 +101,6 @@ var __app = {
         $.ajax(ajax);
     },
     error: function (error) {
-        console.error(error);
         __dom.imprimirToast("Error", "Se ha producido un error, "
                 + "compruebe su conexión, reintenlo o de lo contrario contacte "
                 + "el administrador.", "error");

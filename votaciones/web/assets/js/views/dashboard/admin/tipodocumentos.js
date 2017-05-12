@@ -16,8 +16,7 @@ $(function () {
         onClickBotonControl: function () {
             var btn = $(this);
             var row = btn.parent().parent();
-            var datos = TipoDocumento.tablaTipoDocumentos.row(row).data();
-            console.log(datos);
+            var datos = TipoDocumento.tablaTipoDocumentos.row(row).data();            
             if (btn.hasClass("btn-editar")) {
                 TipoDocumento.editar(datos);
             } else if (btn.hasClass("btn-eliminar")) {

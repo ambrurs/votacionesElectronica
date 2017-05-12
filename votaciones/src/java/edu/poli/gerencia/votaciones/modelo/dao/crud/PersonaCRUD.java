@@ -144,6 +144,7 @@ public class PersonaCRUD implements IGenericoDAO<Persona> {
         Persona obj = null;
         try {
             ps = cnn.prepareStatement(sql);
+            System.out.println(ps.toString());
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 obj = getPersonaAdaptable(rs);

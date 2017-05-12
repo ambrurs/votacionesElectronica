@@ -11,7 +11,6 @@ import edu.poli.gerencia.votaciones.modelo.vo.Respuesta;
 import edu.poli.gerencia.votaciones.modelo.vo.Usuario;
 import edu.poli.gerencia.votaciones.negocio.utiles.SesionUtil;
 import java.sql.Connection;
-import java.util.Date;
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;

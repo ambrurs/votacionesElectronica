@@ -38,7 +38,6 @@ $(function () {
                 __dom.imprimirAlerta(mensaje, "danger");
                 $('#formRecoverAccount').find('input,button').prop('disabled', false);
             }
-            console.log(respuesta);
         },
     };
     RecoverAccount.init();

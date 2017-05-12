@@ -79,7 +79,6 @@ $(function () {
             });
         },
         onCambiarEstadoCompleto: function (respuesta) {
-            console.log(respuesta);
             if (__app.respuestaExistosa(respuesta)) {
                 Usuarios.consultarUsuarios();
                 __dom.imprimirToast("Actualizado", "Se ha actualizado el estado correctamente.", "success");
@@ -88,7 +87,6 @@ $(function () {
             }
         },
         onClickCambiarEstado: function () {
-            console.log("CAMBIAR");
             var btn = $(this);
             var modal = $('#modalCambiarEstado');
             var estado = modal.find('input[name="estadoRadio"]:checked').val();
@@ -115,19 +113,24 @@ $(function () {
             modal.find('#titulo').html('<i class="fa fa-fw fa-user-plus"></i> Nuevo usuario');
             modal.find("input,select").val("").prop("disabled", false).trigger('change.select2');
             modal.find('#btnGuardar').show();
+            $('#formUsuario').find('.has-error, .has-danger').removeClass('has-error has-danger');
         },
         verUsuario: function (datos) {
+            $('#formUsuario').find('.has-error, .has-danger').removeClass('has-error has-danger');
             $('#alertActualizar').hide();
             Usuarios.modalUsuario.find('#titulo').html('<i class="fa fa-fw fa-eye"></i> Ver usuario');
             Usuarios.modalUsuario.modal("show");
             var form = Usuarios.modalUsuario.find('#formUsuario');
+            form.find('.has-error').removeClass('has-error');
             form.find('select, input').prop("disabled", true);
             form.fillForm(datos).find('select').trigger('change.select2');
             Usuarios.modalUsuario.find('#btnGuardar').hide();
         },
         editarUsuario: function (datos) {
+            $('#formUsuario').find('.has-error, .has-danger').removeClass('has-error has-danger');
             $('#alertActualizar').hide();
             var modal = Usuarios.modalUsuario.modal("show").attr('data-action', "A"); //A = Actualizar.
+            modal.find('.has-error').removeClass('has-error');
             modal.find('#titulo').html('<i class="fa fa-fw fa-edit"></i> Editar usuario');
             var form = modal.find('#formUsuario');
             form.fillForm(datos).find('select').trigger('change.select2');

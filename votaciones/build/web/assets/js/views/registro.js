@@ -62,7 +62,6 @@ $(function () {
         },
         onChangeComboTipoUsuario: function () {
             var combo = $(this);
-            console.info("CHANGE " + combo.val());
             var txtNombreEmpresa = $('#txtNombreEmpresa');
             var cmbEmpresa = $('#cmbEmpresa');
             switch (combo.val()) {
@@ -115,9 +114,9 @@ $(function () {
          */
         obtenerObjetoRegistro: function (form) {
             var obj = form.getFormData();
-            obj.contrasena = md5(obj.contrasena);
+            obj.consUsuario.contrasena = md5(obj.consUsuario.contrasena);
             if ($('#cmbTipoUsuario').val() == 3) {
-                obj.consPersonaAsociada = {consPersona: form.find('#cmbEmpresa').val()};
+                obj.consPersonaAsociada = form.find('#cmbEmpresa').val();
                 obj.nombreEmpresa = null;
             }
             obj.persona = JSON.stringify(obj);

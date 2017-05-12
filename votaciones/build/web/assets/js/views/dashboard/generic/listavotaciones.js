@@ -20,8 +20,13 @@ $(function () {
             __app.get("listarvotaciones", null, ListaVotaciones.onConsultarVotaciones);
         },
         onConsultarVotaciones: function (respuesta) {
-            $('#alertaConsultandoVotaciones').addClass('hidden');
             var datos = __app.parsearRespuesta(respuesta);
+            datos = (datos.length > 0) ? datos : false;
+            if (!datos) {
+                __dom.imprimirAlerta('<i class="fa fa-fw fa-warning"></i> No hay votaciones en el momento.', 'warning', false, $('#alertaConsultandoVotaciones'));
+                return;
+            }
+            $('#alertaConsultandoVotaciones').addClass('hidden');
             var contenedor = $('#listaVotaciones');
             var model = contenedor.find('.model');
             var clon = null;
