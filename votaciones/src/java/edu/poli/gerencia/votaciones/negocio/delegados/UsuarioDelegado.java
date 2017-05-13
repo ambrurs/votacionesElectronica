@@ -53,7 +53,10 @@ public class UsuarioDelegado extends GenericoDelegado<Usuario> {
                     throw new VotacionesException(EMensajes.ERROR_REGISTRO_EXISTE)
                             .reemplazarParteMensaje("__DATO__", "correo electrónico");
                 }
-                boolean existeEmpresa = persona.getNombreEmpresa().equals(personaTemp.getNombreEmpresa());
+                if(persona == null){
+                    throw new VotacionesException(EMensajes.ERROR_INSERTAR);
+                }
+                boolean existeEmpresa = persona.getNombreEmpresa() == personaTemp.getNombreEmpresa();
                 boolean registrandoEmpresa = persona.getConsUsuario().getIdTipoUsuario().getIdTipoUsuario() == 2;
                 if (existeEmpresa && registrandoEmpresa) {
                     throw new VotacionesException(EMensajes.ERROR_REGISTRO_EXISTE)

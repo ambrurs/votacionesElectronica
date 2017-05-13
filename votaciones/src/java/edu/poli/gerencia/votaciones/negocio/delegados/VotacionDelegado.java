@@ -32,13 +32,12 @@ public class VotacionDelegado extends GenericoDelegado<Votacion> {
         genericoDAO = votacionDAO;
     }
 
-    public List<Votacion> listarVotaciones() throws VotacionesException {
+    public List<Votacion> listarVotacionesTabla(Usuario usuario) throws VotacionesException {
         try {
             return votacionDAO.listaConsultar("SELECT v.*, u.NOMBRE_USUARIO, tv.NOMBRE_TIPO_VOTACION"
                     + " FROM votacion v INNER JOIN tipo_votacion tv ON"
                     + " v.ID_TIPO_VOTACION = tv.ID_TIPO_VOTACION INNER JOIN usuario"
-                    + " u ON v.CONS_USUARIO_CREACION = u.CONS_USUARIO"
-                    + "");
+                    + " u ON v.CONS_USUARIO_CREACION = u.CONS_USUARIO WHERE u.CONS_USUARIO = " + usuario.getConsUsuario());
         } catch (SQLException ex) {
             Logger.getLogger(VotacionDelegado.class.getName()).log(Level.SEVERE, null, ex);
             throw new VotacionesException(EMensajes.CONSULTAR);

@@ -44,7 +44,7 @@ public class VotacionServlet extends GenericoServlet implements IServlet {
                 respuesta = actualizar(request);
                 break;
             case LISTAR_TODOS:
-                respuesta = listarTodos();
+                respuesta = listarTodos(request);
                 break;
             case LISTAR_VOTACIONES:
                 respuesta = listarVotaciones(request);
@@ -95,9 +95,13 @@ public class VotacionServlet extends GenericoServlet implements IServlet {
         return respuesta;
     }
 
-    private Respuesta listarTodos() throws VotacionesException {
+    private Respuesta listarTodos(HttpServletRequest request) throws VotacionesException {
+        if (!SesionUtil.esEmpresa(request)) {
+            throw new VotacionesException(EMensajes.ACCESO_DENEGADO);
+        }
         Respuesta respuesta = new Respuesta(EMensajes.NO_SE_ENCONTRARON_REGISTROS);
-        respuesta.setDatos(votacionDelegado.listarVotaciones());
+        Usuario usuario = SesionUtil.obtenerSesion(request);
+        respuesta.setDatos(votacionDelegado.listarVotacionesTabla(usuario));
         return respuesta;
     }
 
@@ -142,7 +146,7 @@ public class VotacionServlet extends GenericoServlet implements IServlet {
     private Respuesta lanzarJobVotaciones(HttpServletRequest request) {
         Respuesta respuesta = new Respuesta(EMensajes.ACTUALIZAR);
         if (SesionUtil.esEmpresa(request)) {
-            
+
         }
         return respuesta;
     }
