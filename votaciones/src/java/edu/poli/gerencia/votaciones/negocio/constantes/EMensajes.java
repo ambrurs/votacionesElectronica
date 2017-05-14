@@ -48,7 +48,9 @@ public enum EMensajes {
     ERROR_FECHA_INICIAL_FINAL(-16, "La fecha inicial no puede ser mayor a la final ", null),
     ERROR_INSERTAR_DUPLICADO(-1, "Error regisrto duplicado ", null),
     ERROR_REGISTRO_EXISTE(0, "Ya existe un registro, con el mismo __DATO__", null),
-    ERROR_CONECTAR_IMPRESORA(-1, "No se podido establecer conexion a las impresoras del equipo", null);
+    ERROR_CONECTAR_IMPRESORA(-1, "No se podido establecer conexion a las impresoras del equipo", null),
+    ERROR_YA_HAS_VOTADO(-3, "Ya has votado antes", null),
+    ;
 
     private int codigo;
     private String descripcion;

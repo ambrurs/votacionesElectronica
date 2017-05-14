@@ -16,15 +16,15 @@ import java.sql.SQLException;
  * @email contacto@jhonjaider1000.com
  */
 public class VotacionUsuarioCandidatoDelegado extends GenericoDelegado<VotacionUsuarioCandidato> {
-    
+
     private final VotacionUsuarioCandidatoDAO votacionUsuarioCandidatoDAO;
-    
+
     public VotacionUsuarioCandidatoDelegado(Connection cnn) throws VotacionesException {
         super(cnn);
         votacionUsuarioCandidatoDAO = new VotacionUsuarioCandidatoDAO(cnn);
         genericoDAO = votacionUsuarioCandidatoDAO;
     }
-    
+
     public void insertar(VotacionUsuarioCandidato vuc, Integer idVotacion) throws VotacionesException {
         try {
             //Consultamos el registro de participación del candidato (candidato_votacion).
@@ -41,14 +41,16 @@ public class VotacionUsuarioCandidatoDelegado extends GenericoDelegado<VotacionU
                 VotacionDAO vDAO = new VotacionDAO(cnn);
                 Votacion v = vDAO.buscarPorId(idVotacion);
                 v.setCantidadVotos(v.getCantidadVotos() + 1);
-                vDAO.actualizar(v);
                 //Validamos que el usuario no haya votado antes.
                 String sql = "SELECT * FROM votacion_usuario_candidato WHERE "
                         + "CANDIDATO_VOTACION_CONS_CANDIDATO = " + vuc.getCandidatoVotacionConsCandidato().getConsCandidato() + " AND "
                         + "USUARIO_CONS_USUARIO = " + vuc.getUsuarioConsUsuario().getConsUsuario();
                 VotacionUsuarioCandidato vTemp = votacionUsuarioCandidatoDAO.consultar(sql);
                 if (vTemp == null) {
+                    vDAO.actualizar(v);
                     votacionUsuarioCandidatoDAO.insertar(vuc);
+                } else {
+                    throw new VotacionesException(EMensajes.ERROR_YA_HAS_VOTADO);
                 }
             } else {
                 throw new VotacionesException(EMensajes.ERROR_DATO).reemplazarParteMensaje("__DATO__", "CV Es inválido.");
@@ -58,5 +60,5 @@ public class VotacionUsuarioCandidatoDelegado extends GenericoDelegado<VotacionU
             throw new VotacionesException(EMensajes.ERROR_INSERTAR);
         }
     }
-    
+
 }

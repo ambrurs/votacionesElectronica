@@ -13865,3 +13865,6 @@ base-chart.chart {
     overflow: hidden;
     user-select: none;
 }
+body{
+    padding-top: 0px !important;
+}

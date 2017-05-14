@@ -197,6 +197,15 @@ var __dom = {
     }
 };
 
-$('#contenido').on('click', '.custom-close', function () {
-    $(this).parent().hide();
+$(function () {
+    //Se elimina la publicidad jelastic.
+    window.setInterval(function () {
+        $('iframe').hide();
+        $('body').css("padding-top", "0px");
+    }, 0);
+
+    //Ojo esto si pertenece al sistema.
+    $('#contenido').on('click', '.custom-close', function () {
+        $(this).parent().hide();
+    });
 });

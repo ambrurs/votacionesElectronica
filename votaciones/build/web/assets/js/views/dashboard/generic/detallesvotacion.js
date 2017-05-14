@@ -83,11 +83,13 @@ $(function () {
                 }
                 if (datos.usuarioActualHaVotado) {
                     $('.btn-item-votar').remove();
+                    $('#btnEnviarVoto').remove();
                     __dom.imprimirAlerta('<i class="fa fa-fw fa-info-circle"></i> Ud ya participó en esta votación, gracias por votar.', "warning", false, $('#alertaCuerpoDetalleVotacion'));
                 }
                 if (votacion.estadoVotacion !== "E") {
                     __dom.imprimirAlerta('<i class="fa fa-fw fa-info-circle"></i> Las votaciones estarán disponibles a partir del ' + __dom.formatearFecha(votacion.fechaInicioInscripcion) + " hasta " + __dom.formatearFecha(votacion.fechaFinInscripcion), "warning", false, $('#alertaCuerpoDetalleVotacion'));
                     $('.btn-item-votar').remove();
+                    $('#btnEnviarVoto').remove();
                 } else if (votacion.estadoVotacion !== "S") {
                     $('#btnPostular').next().remove();
                     $('#btnPostular').remove();
@@ -143,6 +145,10 @@ $(function () {
                         var titulo = (valid) ? "Registrado" : "Error";
                         var tipo = (valid) ? "success" : "error";
                         var mensaje = (valid) ? "Se ha registrado el voto correctamente." : "No se pudo registrar su votación";
+                        if (respuesta.codigo == -3) {
+                            mensaje = respuesta.mensaje;
+                            tipo = "warning";
+                        }
                         __dom.imprimirToast(titulo, mensaje, tipo);
                         DetallesVotacion.reiniciarFormulario();
                     });
