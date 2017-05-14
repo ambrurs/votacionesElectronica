@@ -21,7 +21,7 @@
         <link rel="shortcut icon" href="../assets/ico/favicon.png">
 
         <title>Dashboard</title>
-        <script src="../assets/js/libs/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="../assets/js/global/app.sesion.js" type="text/javascript"></script>
         <!-- Icons -->
         <link href="../assets/css/font-awesome.min.css" rel="stylesheet">
