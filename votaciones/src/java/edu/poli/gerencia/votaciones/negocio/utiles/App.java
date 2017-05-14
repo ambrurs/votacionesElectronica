@@ -27,8 +27,8 @@ public class App {
         fromName = "Votaciones";
         hostEmail = "smtp.gmail.com";
         portEmail = "587";
-        usernameEmail = "jhonjaider100015@gmail.com";
-        passwordEmail = "jhon8513";
+        usernameEmail = "john.vanegas67@gmail.com";
+        passwordEmail = "jhon1512211452";
     }
 
 }
